@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Question 4: Currency Converter</title>
+</head>
+<body>
+
+  <fieldset>
+    Convert <input type="text" id="data" />
+    <select id="from">
+      <option value="INR">Indian Rupee</option>
+      <option value="USD">US Dollar</option>
+    </select>
+    to
+    <select id="to">
+      <option value="USD">US Dollar</option>
+      <option value="INR">Indian Rupee</option>
+    </select>
+    <button onclick="convert();">Calculate</button>
+    <span id="answer" style="margin-left: 10px; font-weight: bold;"></span>
+  </fieldset>
+
+  <script>
+    function convert() {
+      var amount = parseFloat(document.getElementById("data").value);
+      var fromUnit = document.getElementById("from").value;
+      var toUnit = document.getElementById("to").value;
+      var result = 0;
+
+      if (isNaN(amount)) {
+        document.getElementById("answer").innerHTML = "Enter a valid number";
+        return;
+      }
+
+      if (fromUnit === "INR" && toUnit === "USD") {
+        result = amount * 0.015;
+        document.getElementById("answer").innerHTML = "$ " + result.toFixed(2);
+      } else if (fromUnit === "USD" && toUnit === "INR") {
+        result = amount * 67.12;
+        document.getElementById("answer").innerHTML = "Rs. " + result.toFixed(2);
+      } else {
+        // If both dropdowns are the same currency
+        result = amount;
+        document.getElementById("answer").innerHTML = result.toFixed(2) + " (" + toUnit + ")";
+      }
+    }
+  </script>
+</body>
+</html>

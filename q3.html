@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Question 3: Fruit Farm</title>
+  <style>
+    #garden {
+      margin-top: 15px;
+      line-height: 0;
+    }
+    #garden img {
+      margin: 2px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Fruit Farm</h1>
+  <div>
+    Rows: <input type="text" id="rows" size="4" />
+    Columns: <input type="text" id="columns" size="4" /> <br /><br />
+    <button onclick="grow();">Plant Garden</button>
+  </div>
+
+  <div id="garden"></div>
+
+  <script>
+    function grow() {
+      var rows = parseInt(document.getElementById("rows").value);
+      var cols = parseInt(document.getElementById("columns").value);
+      var garden = document.getElementById("garden");
+
+      // Reset existing garden
+      garden.innerHTML = "";
+
+      var fruits = ["apple.png", "orange.png"];
+
+      for (var r = 0; r < rows; r++) {
+        for (var c = 0; c < cols; c++) {
+          // Equal 50/50 probability between 0 and 1
+          var randomIndex = Math.floor(Math.random() * 2);
+          var selectedFruit = fruits[randomIndex];
+
+          garden.innerHTML += '<img src="' + selectedFruit + '" width="80" height="80" alt="' + selectedFruit + '">';
+        }
+        // Break line at the end of each row
+        garden.innerHTML += "<br>";
+      }
+    }
+  </script>
+</body>
+</html>

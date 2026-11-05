@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Question 5: Coin Flip</title>
+</head>
+<body>
+
+  <h1>Head or Tail?</h1>
+  <div>
+    <img src="head.png" id="coin" width="120" height="120" alt="Coin" /> <br /><br />
+    <button id="flip">Flip!</button>
+  </div>
+  <p>
+    Head Total: <span id="num_head">0</span><br />
+    Tail Total: <span id="num_tail">0</span>
+  </p>
+
+  <script>
+    var headCount = 0;
+    var tailCount = 0;
+
+    // Attach unobtrusive event listener
+    document.getElementById("flip").addEventListener("click", flipFunction);
+
+    function flipFunction() {
+      // 50% probability: 0 for Heads, 1 for Tails
+      var isTail = Math.floor(Math.random() * 2);
+
+      if (isTail === 0) {
+        document.getElementById("coin").src = "head.png";
+        headCount++;
+        document.getElementById("num_head").innerHTML = headCount;
+      } else {
+        document.getElementById("coin").src = "tail.png";
+        tailCount++;
+        document.getElementById("num_tail").innerHTML = tailCount;
+      }
+    }
+  </script>
+</body>
+</html>

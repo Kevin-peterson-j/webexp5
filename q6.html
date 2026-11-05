@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Question 6: Cake Order Form</title>
+</head>
+<body>
+
+  <h1>Cake Order Form</h1>
+  <fieldset>
+    # of 1/2kg Cakes <input type="text" id="small" value="0" /><br /><br />
+    # of 1kg Cakes <input type="text" id="medium" value="0" /><br /><br />
+    # of 2kg Cakes <input type="text" id="large" value="0" /><br /><br />
+    Tip:
+    <label><input type="radio" value="10" name="tip" /> 10%</label>
+    <label><input type="radio" value="15" name="tip" checked="checked" /> 15%</label>
+    <label><input type="radio" value="20" name="tip" /> 20%</label> <br /><br />
+
+    <button id="submit">Calculate Order</button>
+  </fieldset>
+
+  <p>
+    Cost of order: <strong id="price"></strong>
+  </p>
+
+  <script>
+    // Attach event handler unobtrusively
+    document.getElementById("submit").addEventListener("click", calculateOrder);
+
+    function calculateOrder() {
+      var qtySmall = parseInt(document.getElementById("small").value) || 0;
+      var qtyMedium = parseInt(document.getElementById("medium").value) || 0;
+      var qtyLarge = parseInt(document.getElementById("large").value) || 0;
+
+      // Base pricing: 1/2kg = Rs.100, 1kg = Rs.200, 2kg = Rs.400
+      var baseCost = (qtySmall * 100) + (qtyMedium * 200) + (qtyLarge * 400);
+
+      // Tax = 9%
+      var costWithTax = baseCost + (baseCost * 0.09);
+
+      // Tip from selected radio button
+      var selectedTipElement = document.querySelector('input[name="tip"]:checked');
+      var tipPercent = parseFloat(selectedTipElement.value);
+
+      // Total = Cost after tax + Tip on that cost
+      var totalCost = costWithTax + (costWithTax * (tipPercent / 100));
+
+      document.getElementById("price").innerHTML = "Rs. " + totalCost.toFixed(2);
+    }
+  </script>
+</body>
+</html>
